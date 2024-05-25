@@ -1,0 +1,38 @@
+﻿@inherits NombreMagiqueBase
+@page "/nombre"
+
+<h3>Nombre Magique</h3>
+@if (gameWon.HasValue)
+{
+    if (gameWon.Value)
+    {
+        <h2>Gagner 😍 </h2>
+    }
+    else
+    {
+        <h2>Perdu 😭</h2>
+    }
+    <button class="btn btn-primary" @onclick="() => ReinitGame()">Rejouer</button>
+
+}
+else
+{
+    <div>
+        <h4>Devinez le nombre compris entre 0 et @NbMax</h4>
+    </div>
+
+    <div>
+        <input type="number" @bind="value" />
+        <button class="btn btn-primary" @onclick="() => TestNumber()">Tester</button>
+    </div>
+
+    <div>
+        @for (int i = 0; i < nbRemaningLifes; i++)
+        {
+            <span style="color:red; font-size: 24px">&hearts;</span>
+        }
+
+    </div>
+}
+
+
